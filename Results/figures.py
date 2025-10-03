@@ -88,11 +88,11 @@ ax1.plot(
 )
 ax1.vlines(
     x=2030, ymin=-0.1, ymax=1.5, color='blue', linestyle=':',
-    label="2030 begin effective year, 1st gen"
+    # label="2030 begin effective year, 1st gen"
 )
 ax1.vlines(
     x=2034.85, ymin=-0.1, ymax=1.5, color='blue', linestyle='--',
-    label="2035 full effective year, 1st gen"
+    # label="2035 full effective year, 1st gen"
 )
 ax1.plot(
     years1, tot_pop_2025_2050_2gen - tot_pop_2025_2050_base, linestyle='-',
@@ -101,11 +101,11 @@ ax1.plot(
 )
 ax1.vlines(
     x=2035.15, ymin=-0.1, ymax=1.5, color='green', linestyle=':',
-    label="2035 begin effective year, 2nd gen"
+    # label="2035 begin effective year, 2nd gen"
 )
 ax1.vlines(
     x=2045, ymin=-0.1, ymax=1.5, color='green', linestyle='--',
-    label="2045 full effective year, 2nd gen"
+    # label="2045 full effective year, 2nd gen"
 )
 plt.grid(
     visible=True, which='major', axis='both', color='0.5', linestyle='--',
@@ -118,3 +118,12 @@ plt.legend()
 plt.title("Figure 1. US population difference by year: 2025-2050")
 plt.savefig(os.path.join(images_dir, "us_popdiff_2nd1stgen.png"))
 plt.show()
+
+print(
+    f"1st-gen population change relative to baseline in 2050 " +
+    f"is {tot_pop_2025_2050_1gen[-1] - tot_pop_2025_2050_base[-1]}."
+)
+print(
+    f"2nd-gen population change relative to baseline in 2050 " +
+    f"is {tot_pop_2025_2050_2gen[-1] - tot_pop_2025_2050_base[-1]}."
+)
