@@ -83,28 +83,38 @@ tot_pop_2025_2050_2gen = tot_pop_2025_2050_2gen / 1e6
 fig1, ax1= plt.subplots()
 ax1.plot(
     years1, tot_pop_2025_2050_1gen - tot_pop_2025_2050_base, linestyle='-',
-    color='blue', linewidth=3, label='1st gen - baseline'
+    color='blue', marker='^', markeredgecolor='black', linewidth=3,
+    label='1st gen minus baseline'
+)
+ax1.vlines(
+    x=2030, ymin=-0.1, ymax=1.5, color='blue', linestyle=':',
+    label="2030 begin effective year, 1st gen"
+)
+ax1.vlines(
+    x=2034.85, ymin=-0.1, ymax=1.5, color='blue', linestyle='--',
+    label="2035 full effective year, 1st gen"
 )
 ax1.plot(
-    years1, tot_pop_2025_2050_2gen - tot_pop_2025_2050_1gen, linestyle='-',
-    color='green', linewidth=3, label='2nd gen - 1st gen'
+    years1, tot_pop_2025_2050_2gen - tot_pop_2025_2050_base, linestyle='-',
+    color='green', marker='o', markeredgecolor='black', linewidth=3,
+    label='2nd gen minus baseline'
 )
 ax1.vlines(
-    x=2035, ymin=-0.2, ymax=1.2, color='black', linestyle='--',
-    label="begin effective year"
+    x=2035.15, ymin=-0.1, ymax=1.5, color='green', linestyle=':',
+    label="2035 begin effective year, 2nd gen"
 )
 ax1.vlines(
-    x=2045, ymin=-0.2, ymax=1.2, color='black', linestyle=':',
-    label="full effective year"
+    x=2045, ymin=-0.1, ymax=1.5, color='green', linestyle='--',
+    label="2045 full effective year, 2nd gen"
 )
 plt.grid(
     visible=True, which='major', axis='both', color='0.5', linestyle='--',
     linewidth=0.3
 )
-plt.ylim(-0.2, 1.2)
+plt.ylim(-0.1, 1.5)
 plt.xlabel("Year")
 plt.ylabel("Population difference (millions)")
 plt.legend()
-plt.title("US population difference by year: 2025-2050")
+plt.title("Figure 1. US population difference by year: 2025-2050")
 plt.savefig(os.path.join(images_dir, "us_popdiff_2nd1stgen.png"))
 plt.show()
