@@ -5,6 +5,7 @@ dependencies:
 - python>3.11, <3.14
 - numpy
 - ipython
+- ipykernel
 - setuptools
 - pandas>=1.2.5
 - matplotlib
