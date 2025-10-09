@@ -119,3 +119,33 @@ plt.legend()
 # plt.title("Figure 1. US population difference by year: 2025-2050")
 plt.savefig(os.path.join(images_dir, "us_popdiff_2nd1stgen.png"))
 plt.show()
+
+"""
+-------------------------------------------------------------------------------
+Create Figure 2: US survival rates and fertility rates by age
+-------------------------------------------------------------------------------
+"""
+
+
+"""
+-------------------------------------------------------------------------------
+Create Figure 3: Lifecycle profiles of U.S. hourly earnings: baseline versus
+simulated 5-year shift in productivity rates by age
+-------------------------------------------------------------------------------
+"""
+
+
+"""
+-------------------------------------------------------------------------------
+Create Figure 4: Evolution of the US population distribution over time: 2024-
+2104
+-------------------------------------------------------------------------------
+"""
+
+
+"""
+-------------------------------------------------------------------------------
+Create Figure 5: Estimated impacts of different interventions on GDP and
+population, with alternative results of scenario analyses
+-------------------------------------------------------------------------------
+"""
