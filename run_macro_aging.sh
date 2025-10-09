@@ -11,4 +11,4 @@ python simulation.py scenarios.json
 cd ..
 mkdir -p Results
 cd SimulationCode
-python process_results.py "simulation_results/MacroAgingNatureSimulations" scenarios.json "../Results/macro_aging_results.csv"
+python process_results.py "simulation_results/" scenarios.json "simulation_results/macro_aging_results.csv"

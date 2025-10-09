@@ -30,9 +30,7 @@ def main(simulation_json):
 
     # Directories to save data
     cur_dir = os.path.dirname(os.path.realpath(__file__))
-    sim_dir = os.path.join(
-        cur_dir, "simulation_results", sim_json["Simulation directory"]
-    )
+    sim_dir = os.path.join(cur_dir, "simulation_results")
     base_dir = os.path.join(sim_dir, "baseline")
     # set paths for each simulation
     scenario_directories = {}
@@ -49,7 +47,8 @@ def main(simulation_json):
     Read in OG-USA default parameters
     """
     resp = requests.get(
-        "https://raw.githubusercontent.com/PSLmodels/OG-USA/master/ogusa/ogusa_default_parameters.json"
+        "https://raw.githubusercontent.com/PSLmodels/OG-USA/master/ogusa/" +
+        "ogusa_default_parameters.json"
     )
     ogusa_default_params = json.loads(resp.text)
 

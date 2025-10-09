@@ -12,4 +12,4 @@ Data and code for article: "A GDP Approach to Measure Returns on Investment in A
    ```bash
    bash run_macro_aging.sh
     ```
-4. Results will be saved in the `Results/macro_aging_results.csv` file.
+4. Results will be saved in the `SimulationCode/simulation_results/macro_aging_results.csv` file.

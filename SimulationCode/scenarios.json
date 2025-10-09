@@ -1,5 +1,4 @@
 {
-    "Simulation directory": "MacroAgingNatureSimulations",
     "scenario_params": {
         "Brain Aging": {
             "directory": "brain",

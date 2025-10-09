@@ -14,8 +14,7 @@ from ogcore.demographics import get_pop
 # Set paths
 script_dir = os.path.dirname(os.path.abspath(__file__))
 main_dir = os.path.join(
-    os.path.dirname(script_dir), "SimulationCode", "simulation_results",
-    "MacroAgingNatureSimulations"
+    os.path.dirname(script_dir), "simulation_results"
 )
 images_dir = os.path.join(script_dir, "images")
 
