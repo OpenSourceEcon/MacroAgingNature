@@ -1,6 +1,6 @@
 """
 This file generates the figures in the paper, "A Macroeconomic Approach to
-Measure US Returns from Slowing Biological Aging", by Raiany Romanni, Nathanial
+Measure US Returns from Slowing Biological Aging", by Raiany Romanni, Nathaniel
 Hendrix, Richard W. Evans, and Jason DeBacker
 """
 # Import libraries
@@ -14,8 +14,8 @@ from ogcore.demographics import get_pop
 # Set paths
 script_dir = os.path.dirname(os.path.abspath(__file__))
 main_dir = os.path.join(
-    os.path.dirname(script_dir),
-    "SimulationCode/simulation_results/MacroAgingNatureSimulations/"
+    os.path.dirname(script_dir), "SimulationCode", "simulation_results",
+    "MacroAgingNatureSimulations"
 )
 images_dir = os.path.join(script_dir, "images")
 
@@ -62,13 +62,13 @@ tot_pop_2025_2050_base = base_pop_full_path.sum(axis=1)
 # scenarios
 tot_pop_2025_2050_1gen = pd.read_csv(
     os.path.join(
-        main_dir, "1st_gen/demographic_data", "population_distribution.csv"
+        main_dir, "1st_gen", "demographic_data", "population_distribution.csv"
     ), header=None
 ).sum(axis=1).to_numpy()[:T1]
 
 tot_pop_2025_2050_2gen = pd.read_csv(
     os.path.join(
-        main_dir, "2nd_gen/demographic_data", "population_distribution.csv"
+        main_dir, "2nd_gen", "demographic_data", "population_distribution.csv"
     ), header=None
 ).sum(axis=1).to_numpy()[:T1]
 
