@@ -13,10 +13,10 @@ from ogcore.demographics import get_pop
 
 # Set paths
 script_dir = os.path.dirname(os.path.abspath(__file__))
-main_dir = os.path.join(
-    os.path.dirname(script_dir), "simulation_results"
+main_dir = os.path.join(script_dir, "simulation_results")
+images_dir = os.path.join(
+    os.path.dirname(script_dir), "ResultsInPaper", "figures"
 )
-images_dir = os.path.join(script_dir, "images")
 
 """
 -------------------------------------------------------------------------------
@@ -72,11 +72,11 @@ tot_pop_2025_2050_2gen = pd.read_csv(
 ).sum(axis=1).to_numpy()[:T1]
 
 print(
-    f"1st-gen population change relative to baseline in 2050 " +
+    f"FIG 1: 1st-gen population change relative to baseline in 2050 " +
     f"is {tot_pop_2025_2050_1gen[-1] - tot_pop_2025_2050_base[-1]:,.0f}."
 )
 print(
-    f"2nd-gen population change relative to baseline in 2050 " +
+    f"FIG 1: 2nd-gen population change relative to baseline in 2050 " +
     f"is {tot_pop_2025_2050_2gen[-1] - tot_pop_2025_2050_base[-1]:,.0f}."
 )
 
@@ -115,8 +115,8 @@ plt.ylim(-0.1, 1.2)
 plt.xlabel("Year")
 plt.ylabel("Population difference (millions)")
 plt.legend()
-# plt.title("Figure 1. US population difference by year: 2025-2050")
-plt.savefig(os.path.join(images_dir, "us_popdiff_2nd1stgen.png"))
+plt.title("Figure 1. US population difference by year: 2025-2050")
+plt.savefig(os.path.join(images_dir, "fig1_us_popdiff_2nd1stgen.png"))
 plt.show()
 
 """
