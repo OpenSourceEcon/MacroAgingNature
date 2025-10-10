@@ -1,0 +1,1 @@
+This is a placeholder text file to allow otherwise empty directory to appear in GitHub pull request. We should delete this file as soon as other files are in this directory.
