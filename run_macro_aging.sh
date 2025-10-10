@@ -12,3 +12,4 @@ cd ..
 mkdir -p Results
 cd SimulationCode
 python process_results.py "simulation_results/" scenarios.json "../ResultsInPaper/macro_aging_results.csv"
+python figures.py
