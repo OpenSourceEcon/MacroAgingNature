@@ -22,6 +22,17 @@
             "initial_effect_period": 10,
             "final_effect_period": 20
         },
+        "Ovarian Aging v2": {
+            "directory": "reproductive_1yr_v2",
+            "rd_invest": 0.0,
+            "num_years_invest": 10,
+            "mort_effect": 0.01,
+            "prod_effect": 0.05,
+            "fert_effect": 0.5,
+            "min_age_effect_felt": 40,
+            "initial_effect_period": 10,
+            "final_effect_period": 20
+        },
         "1st Gen": {
             "directory": "1st_gen",
             "rd_invest": 0.0,
