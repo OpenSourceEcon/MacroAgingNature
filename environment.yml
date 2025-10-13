@@ -1,4 +1,4 @@
-name: macro-aging-env2
+name: macro-aging-env
 channels:
 - conda-forge
 dependencies:
@@ -17,4 +17,3 @@ dependencies:
   - taxcalc==5.2.0
   - ogusa==0.3.0
   - plotly-express
-  - plotnine
