@@ -361,7 +361,7 @@ fig5_xticks = [
 data5 = {
     "avg_diff": {
         "Brain\nAging": {
-            "Pessimistic": 385.41, "Base": 201.29, "Optimistic": 245.89
+            "Pessimistic": 156.91, "Base": 201.29, "Optimistic": 245.89
             },
         "Ovarian\nAging": {
             "Pessimistic": 3.5, "Base": 9.1, "Optimistic": 14.6
@@ -387,7 +387,7 @@ data5 = {
     },
     "NPV": {
         "Brain\nAging": {
-            "Pessimistic": 10.767, "Base": 8.906, "Optimistic": 18.914
+            "Pessimistic": 7.053, "Base": 8.906, "Optimistic": 18.914
             },
         "Ovarian\nAging": {
             "Pessimistic": 7.353, "Base": 9.261, "Optimistic": 11.169
@@ -413,7 +413,7 @@ data5 = {
     },
     "total_pop_diff_2050": {
         "Brain\nAging": {
-            "Pessimistic": 2.196, "Base": 0.268, "Optimistic": 0.322
+            "Pessimistic": 0.214, "Base": 0.268, "Optimistic": 0.322
             },
         "Ovarian\nAging": {
             "Pessimistic": 0.313, "Base": 0.391, "Optimistic": 0.470
@@ -501,4 +501,5 @@ plt.savefig(
     os.path.join(images_dir,'fig5_gdp_pop_impacts.png'),
     dpi=300, bbox_inches='tight'
 )
-plt.show()
+# plt.show()
+plt.close()
