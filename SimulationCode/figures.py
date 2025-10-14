@@ -12,7 +12,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from ogcore.demographics import get_pop
 from ogcore.utils import shift_bio_clock
-from plotnine import ggplot, aes, geom_point, xlab, ylab, scale_y_discrete, scale_x_continuous, theme_bw, theme
 
 # Set paths
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -121,6 +120,7 @@ plt.legend()
 plt.title("Figure 1. US population difference by year: 2026-2050")
 plt.savefig(os.path.join(images_dir, "fig1_us_popdiff_2nd1stgen.png"))
 # plt.show()
+plt.close()
 
 """
 -------------------------------------------------------------------------------
@@ -188,6 +188,7 @@ plt.legend()
 plt.title("Figure 2A. US survival rates by age: 2026")
 plt.savefig(os.path.join(images_dir, "fig2a_us_survrates_2026.png"))
 # plt.show()
+plt.close()
 
 fig2b, ax2b = plt.subplots()
 ax2b.plot(
@@ -214,6 +215,7 @@ plt.legend()
 plt.title("Figure 2B. US fertility rates by age: 2026")
 plt.savefig(os.path.join(images_dir, "fig2b_us_fertrates_2026.png"))
 # plt.show()
+plt.close()
 
 """
 -------------------------------------------------------------------------------
@@ -260,6 +262,7 @@ plt.title(
     "versus simulated 1-year shift in productivity rates by age")
 plt.savefig(os.path.join(images_dir, "fig3_abil_by_age.png"))
 # plt.show()
+plt.close()
 
 """
 -------------------------------------------------------------------------------
@@ -330,6 +333,7 @@ plt.title(
 )
 plt.savefig(os.path.join(images_dir, "fig4_pop_dist_over_time.png"))
 # plt.show()
+plt.close()
 
 """
 -------------------------------------------------------------------------------
@@ -337,35 +341,164 @@ Create Figure 5: Estimated impacts of different interventions on GDP and
 population, with alternative results of scenario analyses
 -------------------------------------------------------------------------------
 """
-df = pd.DataFrame({
-    'intervention': ['Brain Aging']*3 + ['Ovarian Aging']*3 +
-                    ['41 Is the\nNew 40']*3 + ['66 Is the\nNew 65']*3,
-    'Scenario': ['Base', 'Pessimistic', 'Optimistic']*4,
-    'avg_gdp_change': [201, -385, 246,
-                       9.1, 3.5, 14.6,
-                       408, 321, 496,
-                       326, 256, 397]
-})
-
-order = [
-    "Brain Aging", "Ovarian Aging", "41 Is the New 40", "66 Is the New 65",
-    "1st Gen.,\n 11\% Ag 65+", "1st Gen.,\n 18.5\% Ag 65+",
-    "2nd Gen.,\n 50% Age 40+", "2nd Ge.,\n 50% Age 40+ (Fast Dev.)"
+# Create the data
+interventions = [
+    "Brain\nAging", "Ovarian\nAging", "41 Is the\nNew 40", "66 Is the\nNew 65",
+    "1st Gen.,\n11% Ag 65+", "1st Gen.,\n18.5% Ag 65+",
+    "2nd Gen.,\n50% Age 40+", "2nd Gen.,\n50% Age 40+\n(Fast Dev.)"
 ]
-df['intervention'] = pd.Categorical(df['intervention'], categories=order, ordered=True)
+scenarios = ["Pessimistic", "Base", "Optimistic"]
+output_vars = ["avg_diff", "NPV", "total_pop_diff_2050"]
+fig5_panel_labels = [
+    "Average Annual GDP Change\n2045-2064 ($billions)",
+    "Net Present Value of GDP Change\nOver Decades($trillions)",
+    "Increase in 2050\nPopulation (millions)"
+]
+fig5_xlims = [(-30, 570), (-1.8, 37), (-0.1, 2.22)]
+fig5_xticks = [
+    np.arange(0, 551, 100), np.arange(0, 36, 5), np.arange(0, 2.1, 0.5)
+]
+data5 = {
+    "avg_diff": {
+        "Brain\nAging": {
+            "Pessimistic": 385.41, "Base": 201.29, "Optimistic": 245.89
+            },
+        "Ovarian\nAging": {
+            "Pessimistic": 3.5, "Base": 9.1, "Optimistic": 14.6
+        },
+        "41 Is the\nNew 40": {
+            "Pessimistic": 321.5, "Base": 408.4, "Optimistic": 496.0
+        },
+        "66 Is the\nNew 65": {
+            "Pessimistic": 256.0, "Base": 326.4, "Optimistic": 397.4
+        },
+        "1st Gen.,\n11% Ag 65+": {
+            "Pessimistic": 38.9, "Base": 40.4, "Optimistic": 42.3
+        },
+        "1st Gen.,\n18.5% Ag 65+": {
+            "Pessimistic": 76.2, "Base": 78.7, "Optimistic": 81.9
+        },
+        "2nd Gen.,\n50% Age 40+": {
+            "Pessimistic": 498.0, "Base": 505.0, "Optimistic": 513.4
+        },
+        "2nd Gen.,\n50% Age 40+\n(Fast Dev.)": {
+            "Pessimistic": 514.7, "Base": 522.6, "Optimistic": 531.9
+        }
+    },
+    "NPV": {
+        "Brain\nAging": {
+            "Pessimistic": 10.767, "Base": 8.906, "Optimistic": 18.914
+            },
+        "Ovarian\nAging": {
+            "Pessimistic": 7.353, "Base": 9.261, "Optimistic": 11.169
+        },
+        "41 Is the\nNew 40": {
+            "Pessimistic": 21.551, "Base": 27.102, "Optimistic": 32.693
+        },
+        "66 Is the\nNew 65": {
+            "Pessimistic": 11.365, "Base": 14.350, "Optimistic": 17.367
+        },
+        "1st Gen.,\n11% Ag 65+": {
+            "Pessimistic": 2.343, "Base": 2.416, "Optimistic": 2.504
+        },
+        "1st Gen.,\n18.5% Ag 65+": {
+            "Pessimistic": 4.042, "Base": 4.160, "Optimistic": 4.308
+        },
+        "2nd Gen.,\n50% Age 40+": {
+            "Pessimistic": 21.872, "Base": 22.239, "Optimistic": 22.674
+        },
+        "2nd Gen.,\n50% Age 40+\n(Fast Dev.)": {
+            "Pessimistic": 22.881, "Base": 23.264, "Optimistic": 23.718
+        }
+    },
+    "total_pop_diff_2050": {
+        "Brain\nAging": {
+            "Pessimistic": 2.196, "Base": 0.268, "Optimistic": 0.322
+            },
+        "Ovarian\nAging": {
+            "Pessimistic": 0.313, "Base": 0.391, "Optimistic": 0.470
+        },
+        "41 Is the\nNew 40": {
+            "Pessimistic": 1.375, "Base": 1.723, "Optimistic": 2.073
+        },
+        "66 Is the\nNew 65": {
+            "Pessimistic": 0.939, "Base": 1.178, "Optimistic": 1.419
+        },
+        "1st Gen.,\n11% Ag 65+": {
+            "Pessimistic": 0.260, "Base": 0.275, "Optimistic": 0.294
+        },
+        "1st Gen.,\n18.5% Ag 65+": {
+            "Pessimistic": 0.435, "Base": 0.460, "Optimistic": 0.491
+        },
+        "2nd Gen.,\n50% Age 40+": {
+            "Pessimistic": 1.050, "Base": 1.111, "Optimistic": 1.182
+        },
+        "2nd Gen.,\n50% Age 40+\n(Fast Dev.)": {
+            "Pessimistic": 1.259, "Base": 1.332, "Optimistic": 1.418
+        }
+    }
+}
 
-fig, ax = plt.subplots(figsize=(5,5))
-markers = {'Base': 'o', 'Pessimistic': 's', 'Optimistic': '^'}
+# Set up the plot
+fig5, axs5 = plt.subplots(nrows=1, ncols=3, figsize=(10,7))
 
-for scenario, marker in markers.items():
-    subset = df[df['Scenario'] == scenario]
-    ax.scatter(subset['avg_gdp_change'], subset['intervention'], label=scenario, s=60, marker=marker)
+# Define markers for each scenario
+markers = {"Pessimistic": "s", "Base": "o", "Optimistic": "^"}
 
-ax.set_xlim(0, 500)
-ax.set_xlabel("Projected Average Annual\nChange in GDP, 2045–2064")
-ax.set_ylabel("")
-ax.legend(title="", loc='lower center', bbox_to_anchor=(0.5, -0.15), ncol=3)
-ax.grid(True, color='gray', linestyle='--', linewidth=0.5)
+for i, out_var in enumerate(output_vars):
+    axs5[i].vlines(
+        x=0, ymin=-1.0, ymax=8, color='black', linestyle='--'
+    )
+    # Plot each scenario
+    for scenario in scenarios:
+        x_vals = []
+        y_vals = []
+
+        for j, intervention in enumerate(interventions):
+            x_vals.append(data5[out_var][intervention][scenario])
+            y_vals.append(7-j)
+
+        axs5[i].scatter(
+            x_vals, y_vals, marker=markers[scenario], s=60, label=scenario,
+            edgecolor='black'
+        )
+
+    # Set labels and formatting
+    axs5[i].set_xlabel(fig5_panel_labels[i])
+    axs5[i].set_xlim(fig5_xlims[i][0], fig5_xlims[i][1])
+    axs5[i].set_xticks(fig5_xticks[i])
+    axs5[i].set_ylim(-0.4, 7.3)
+    axs5[i].set_ylabel("")
+    if i == 0:
+        axs5[i].set_yticks(range(len(interventions)))
+        axs5[i].set_yticklabels(interventions[::-1])  # Reverse order
+
+    # Add grid
+    axs5[i].grid(True, alpha=0.3)
+    axs5[i].set_axisbelow(True)
+    if i == 1:
+        # Add legend at bottom
+        axs5[i].legend(
+            loc='upper center', ncol=3, title="Scenario",
+            bbox_to_anchor=(0.5, -0.15)
+        )
+# Remove y-axis labels from second and third plots
+axs5[1].tick_params(axis='y', labelleft=False)
+axs5[2].tick_params(axis='y', labelleft=False)
+
+# Set font
+plt.rcParams.update({'font.size': 14, 'font.family': 'Arial Narrow'})
+
+# Adjust layout to prevent label cutoff
 plt.tight_layout()
-plt.savefig(os.path.join(images_dir,'fig5_gdp_pop_impacts.png'), dpi=300)
+
+# Adjust the horizontal space between subplots. wspace is a fraction of the
+# average axis width
+plt.subplots_adjust(wspace=0.1)
+
+# Save the figure
+plt.savefig(
+    os.path.join(images_dir,'fig5_gdp_pop_impacts.png'),
+    dpi=300, bbox_inches='tight'
+)
 plt.show()
