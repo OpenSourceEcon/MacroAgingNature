@@ -1,5 +1,4 @@
 {
-    "Simulation directory": "MacroAgingNatureSimulations",
     "scenario_params": {
         "Brain Aging, plus 20%": {
             "directory": "brain_plus20",
