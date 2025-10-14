@@ -2,7 +2,7 @@
 Data and code for article: "A GDP Approach to Measure Returns on Investment in Aging Biology"
 
 # Instructions to reproduce results
-0. Install the Anaconda distribution of Python.
+0. Install the Anaconda distribution of Python (https://www.anaconda.com/download).
 1. Clone the repository.
 2. Create a conda environment with the required packages:
    ```bash
