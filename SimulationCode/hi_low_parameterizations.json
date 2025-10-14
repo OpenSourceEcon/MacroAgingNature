@@ -16,7 +16,7 @@
             "directory": "brain_minus20",
             "rd_invest": 0.0,
             "num_years_invest": 10,
-            "mort_effect": 0.8,
+            "mort_effect": 0.08,
             "prod_effect": 0.28,
             "fert_effect": 0.0,
             "min_age_effect_felt": 40,
