@@ -12,4 +12,4 @@ Data and code for article: "A GDP Approach to Measure Returns on Investment in A
    ```bash
    bash run_macro_aging.sh
     ```
-4. All results will be saved in the `ResultsInPaper/macro_aging_results.csv` file. Individual figures from the paper will be saved in the `ResultsInPaper/figures/` directory, and individual table results from the paper will be saved in the `ResultsInPaper/figures/` directory.
+4. All results will be saved in the `ResultsInPaper/macro_aging_results.csv` file and `ResultsInPaper/macro_aging_sensitivity_results.csv`. Individual figures from the paper will be saved in the `ResultsInPaper/figures/` directory.
